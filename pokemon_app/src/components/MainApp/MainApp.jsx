@@ -15,7 +15,7 @@ export default function MainApp() {
           <div className="main-app">
             <Header />
             <Routes>
-              <Route path="/pokemon_app" element={<HomePage />}></Route>
+              <Route path="/" element={<HomePage />}></Route>
               <Route path="/bag" element={<UserBag />}></Route>
             </Routes>
           </div>

@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <div className="header">
         <div className="logo-header">
-      <Link to={"/pokemon_app"}>
+      <Link to={"/"}>
           <img src={logo} alt="Pokemon-app" />
       </Link>
         </div>
