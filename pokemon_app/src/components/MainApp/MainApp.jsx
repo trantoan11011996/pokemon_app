@@ -1,6 +1,6 @@
 import React from "react";
 import { PokemonProvider } from "../../Context/Context";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import HomePage from "../HomePage/HomePage";
 import { AuthContext } from "../../Context/AuthContext";
 import "..//Style/style.css";
@@ -11,15 +11,15 @@ export default function MainApp() {
   return (
     <AuthContext.Provider value={null}>
       <PokemonProvider>
-        <BrowserRouter>
+        <HashRouter>
           <div className="main-app">
             <Header />
             <Routes>
-              <Route path="/" element={<HomePage />}></Route>
+              <Route path="/pokemon_app" element={<HomePage />}></Route>
               <Route path="/bag" element={<UserBag />}></Route>
             </Routes>
           </div>
-        </BrowserRouter>
+        </HashRouter>
       </PokemonProvider>
     </AuthContext.Provider>
   );
