@@ -2,7 +2,73 @@ import React, { useContext, useEffect, useState } from "react";
 import { PokemonContext } from "../../Context/Context";
 import "../DetailPokemon/detail.css";
 export default function DetailPokemon({ detailPoke }) {
-  const { setDetailPoke } = useContext(PokemonContext);
+  const {
+    setDetailPoke,
+    getRandomPoke,
+    addTocart,
+    bag,
+    warningDuplicate,
+    setWarningduplicate,
+    setPokemonData,
+    pokemonData,
+  } = useContext(PokemonContext);
+  const [poke, setPoke] = useState();
+  const [renamePoke, setRenamePoke] = useState("");
+  const [resultFailed, setResultFailed] = useState(false);
+  let emptyArr = [];
+  let arrPoke = [detailPoke];
+  const createChances = () => {
+    return Math.random() < 0.5;
+  };
+
+  const catchListPoke = (chances) => {
+    if (chances) {
+      return arrPoke;
+    } else {
+      return emptyArr;
+    }
+  };
+
+  const exportPoke = (pokeData) => {
+    console.log("poke",pokeData)
+    if (pokeData.length === 1) {
+      setPoke(arrPoke[0]);
+      setResultFailed(false)
+      return;
+    } else if (pokeData.length === 0){
+      setResultFailed(true);
+      return;
+    }
+  };
+
+  const runFuncCatchPoke = () => {
+    setWarningduplicate(false);
+    const chances = createChances();
+    console.log("chances",chances)
+    const result = catchListPoke(chances);
+    exportPoke(result);
+  };
+
+  const confirmName = (e, poke) => {
+    e.preventDefault();
+    const newPokeWithRename = { ...poke, name: renamePoke };
+    setRenamePoke("");
+    setPoke(newPokeWithRename);
+    setPokemonData(
+      pokemonData.map((item) => {
+        if (item.id === poke.id) {
+          return {
+            ...item,
+            name: renamePoke,
+          };
+        }
+        return item;
+      })
+    );
+  };
+  const handleAddtoBag = (e, poke) => {
+    addTocart(e, poke);
+  };
   return (
     <>
       {!detailPoke ? (
@@ -13,7 +79,11 @@ export default function DetailPokemon({ detailPoke }) {
             <div className="wrap-btn-close">
               <button
                 className="btn-close-modal"
-                onClick={() => setDetailPoke(null)}
+                onClick={() => {
+                  setDetailPoke(null);
+                  setPoke(null);
+                  setResultFailed(false)
+                }}
               >
                 X
               </button>
@@ -65,6 +135,33 @@ export default function DetailPokemon({ detailPoke }) {
                   );
                 })}
               </div>
+            </div>
+            <div className="catch-poke">
+              <button className="btn-catch" onClick={() => runFuncCatchPoke()}>
+                Catch this Poke
+              </button>
+              {poke ? (
+                <div className="wrap-btn-add">
+                  <button
+                    className="btn-add"
+                    onClick={(e) => handleAddtoBag(e, detailPoke)}
+                  >
+                    Add to your bag
+                  </button>
+                  {warningDuplicate && (
+                    <p className="text-duplicate">
+                      This Pokemon already in your bag!!! please press again
+                    </p>
+                  )}
+                </div>
+              ) : (
+                <></>
+              )}
+              {resultFailed && (
+                <div className="result-failed">
+                  Let try one more time to catches your Pokemon
+                </div>
+              )}
             </div>
           </div>
         </div>

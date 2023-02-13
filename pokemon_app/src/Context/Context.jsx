@@ -13,13 +13,13 @@ const PokemonProvider = ({ children }) => {
   const [detailPoke, setDetailPoke] = useState();
   const [randomPoke, setRandomPoke] = useState(null);
   const [pokeInBag, setPokeInBag] = useState([]);
-  const [warningDuplicate,setWarningduplicate] = useState(false)
-  const [bag,setBag] = useState([])
+  const [warningDuplicate, setWarningduplicate] = useState(false);
+  const [bag, setBag] = useState([]);
 
   useEffect(() => {
     fetchPokemonData();
     const pokeInBag = getPokeInBag();
-    setBag(pokeInBag)
+    setBag(pokeInBag);
   }, [url]);
 
   const getPokeInBag = () => {
@@ -58,24 +58,25 @@ const PokemonProvider = ({ children }) => {
     }
   };
 
-  const addTocart = (e,poke) => {
-    e.preventDefault()
-    let clonePoke = [...bag]
+  const addTocart = (e, poke) => {
+    console.log("poke",poke)
+    e.preventDefault();
+    let clonePoke = [...bag];
     const findDuplicate = clonePoke.some((item) => {
       return item.id === poke.id;
-    })
-    if(!findDuplicate){
-      clonePoke = [...bag, poke]
-      localStorage.setItem("pokeInBag",JSON.stringify(clonePoke))
-      setBag(clonePoke)
-      setWarningduplicate(false)
-      setTimeout(()=>{
-        toast.success("Succes to add your pokemon to bag")
-      },1000)
-      return
-    }else{
-      setWarningduplicate(true)
-      return
+    });
+    if (!findDuplicate) {
+      clonePoke = [...bag, poke];
+      localStorage.setItem("pokeInBag", JSON.stringify(clonePoke));
+      setBag(clonePoke);
+      setWarningduplicate(false);
+      setTimeout(() => {
+        toast.success("Succes to add your pokemon to bag");
+      }, 1000);
+      return;
+    } else {
+      setWarningduplicate(true);
+      return;
     }
   };
   const value = {
@@ -94,7 +95,7 @@ const PokemonProvider = ({ children }) => {
     bag,
     setBag,
     warningDuplicate,
-    setWarningduplicate
+    setWarningduplicate,
   };
   return (
     <PokemonContext.Provider value={value}>{children}</PokemonContext.Provider>

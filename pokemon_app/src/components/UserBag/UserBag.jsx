@@ -10,6 +10,7 @@ export default function UserBag() {
     const filterArr = bag.filter((item) => {
       return item.id !== record.id;
     });
+    localStorage.setItem("pokeInBag",JSON.stringify(filterArr))
     await setBag(filterArr);
     toast.success("You success to release your pokemon");
   };
@@ -62,7 +63,7 @@ export default function UserBag() {
           className="table-antd"
           dataSource={bag}
           columns={columns}
-          pagination={{ defaultCurrent: 1, pageSize: 3 }}
+          pagination={{ defaultCurrent: 1, pageSize: 2 }}
         ></Table>
       </div>
     </>

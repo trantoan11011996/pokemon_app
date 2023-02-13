@@ -17,61 +17,14 @@ export default function HomePage() {
     nextUrl,
     prevUrl,
     randomPoke,
-    getRandomPoke,
-    addTocart,
-    bag,
-    warningDuplicate,
-    setWarningduplicate
   } = useContext(PokemonContext);
-  const [poke, setPoke] = useState();
-  const [renamePoke, setRenamePoke] = useState("");
-
-  let emptyArr = [];
-
-  const createChances = () => {
-    return Math.random() < 0.5;
-  };
-
-  const catchListPoke = (chances) => {
-    if (chances) {
-      return pokemonData;
-    } else {
-      return emptyArr;
-    }
-  };
-
-  const exportPoke = (pokeData) => {
-    if (pokeData.lenght !== null) {
-      const pokeRandomIndex = Math.floor(Math.random() * pokeData.length);
-      setPoke(pokeData[pokeRandomIndex]);
-      return;
-    } else {
-      return;
-    }
-  };
-
-  const runFuncCatchPoke = () => {
-    setWarningduplicate(false)
-    const result = catchListPoke(createChances());
-    exportPoke(result);
-  };
-
-  const confirmName = (e) => {
-    e.preventDefault();
-    const newPokeWithRename = { ...poke, name: renamePoke };
-    setRenamePoke("");
-    setPoke(newPokeWithRename);
-  };
-  const handleAddtoBag = (e,poke)=>{
-    addTocart(e,poke)
-    
-  }
+ 
+ 
   return (
     <>
       <ToastContainer />
       <div className="container-homepage">
         <div className="home-page">
-          <Container className="container-page" fluid>
             <Row>
               <Col md={12} className="col-list-pokemon">
                 <div className="wrap-list-pokemon">
@@ -85,7 +38,7 @@ export default function HomePage() {
             </div>
           </Col> */}
             </Row>
-            <div className="btn-navigate">
+            {/* <div className="btn-navigate">
               {prevUrl && (
                 <Button
                   onClick={() => {
@@ -106,9 +59,8 @@ export default function HomePage() {
                   Next
                 </Button>
               )}
-            </div>
-          </Container>
-          <div className="poke-result">
+            </div> */}
+          {/* <div className="poke-result">
             <button className="btn-catches" onClick={() => runFuncCatchPoke()}>
               Press to catch
             </button>
@@ -144,14 +96,14 @@ export default function HomePage() {
                     ></input>
                     <button
                       className="confirm-name"
-                      onClick={(e) => confirmName(e)}
+                      onClick={(e) => confirmName(e, poke)}
                     >
                       Confirm name
                     </button>
                   </div>
                   <button
                     className="btn-add"
-                    onClick={(e)=>handleAddtoBag(e,poke)}
+                    onClick={(e) => handleAddtoBag(e, poke)}
                   >
                     Add to your bag
                   </button>
@@ -165,7 +117,7 @@ export default function HomePage() {
                 Let try one more time to catches your Pokemon
               </div>
             )}
-          </div>
+          </div> */}
           {randomPoke ? <>{randomPoke.name}</> : <></>}
         </div>
         <DetailPokemon detailPoke={detailPoke} />

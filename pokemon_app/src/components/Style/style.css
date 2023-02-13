@@ -1,24 +1,32 @@
-body {
-  background-color: white;
+p{
+  margin-bottom: 0 ;
+}
+.app-container{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .main-app {
-  width: 80%;
-  margin: 100px auto 0 auto;
+  width: 100%;
+  height: fit-content;
+  padding-bottom: 80px;
+  margin-top: 30px;
 }
 .header-main-app {
   text-align: center;
 }
+
 .home-page {
   margin-top: 20px;
+  padding : 0 80px 0px 80px;
 }
 .list-pokemon {
   width: 100%;
 }
 .wrap-pokemon-item {
-  height: 500px;
+  height: 100%;
   padding: 0 10px;
-  overflow: hidden;
-  overflow-y: scroll;
 }
 .btn-navigate {
   margin-top: 20px;
@@ -50,6 +58,7 @@ body {
     margin: 0 auto 0 auto;
     display: flex;
     flex-direction: column;
+    padding : 10px 10px
 }
 .modal-overlay{
  /* Hidden by default */
@@ -76,7 +85,6 @@ body {
 }
 .modal-container{
   border-radius: 5px;
-  padding: 15px 0;
   height: fit-content;
   background-color: rgb(158,222,249);
 }
@@ -221,12 +229,26 @@ body {
   text-decoration: underline;
 }
 .bag-amount{
-  background-color: rgb(158,222,249);
-  padding : 10px 18px;
-  border-radius: 50%;
+  display: flex;
+  cursor: pointer;
 }
-
-
+.amount-content{
+  display: flex;
+  align-items: center;
+}
+.amount{
+  margin-bottom: 0 !important;
+  background-color: black;
+  color: white;
+  padding: 0 8px;
+  text-align: center;
+  border-radius: 50%;
+  vertical-align: middle;
+  text-decoration: none;
+}
+.icon-poke{
+  height: 50px;
+}
 .user-bag-header{
   text-align: center;
 }
@@ -236,4 +258,113 @@ body {
 }
 .name-pokemon{
   font-size: 20px;
+}
+
+/* footer */
+
+.footer{
+  background-color: rgb(32,34,38);
+  height: fit-content;
+  padding-bottom: 50px;
+}
+
+.footer-content{
+  width: 80%;
+  height: 100%;
+  margin : 0 auto 0 auto
+}
+.footer-content h1{
+  color: white;
+  font-size: 20px;
+}
+.content-about{
+  color: white;
+  opacity: 0.8;
+  margin-top: 30px;
+  margin-bottom: 20px !important;
+}
+.col-content{
+  margin-top: 50px;
+}
+.contact-about{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.col-help{
+  display: flex;
+  flex-direction: column;
+}
+.icon-about{
+  color: #F88020;
+}
+.phone-contact{
+  color: white;
+}
+.input-contact{
+  width: fit-content;
+  height: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #292b31;
+  padding: 3px 3px 3px 0px;
+}
+.input-email{
+  height: 100%;
+  background-color: #292b31;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+  border-radius: 20px;
+}
+.btn-send-email{
+  height: 100%;
+  background-color: #F88020;
+  border-radius: 20px;
+  width: 80px;
+  border: none;
+  color: white;
+}
+.help-content{
+  margin-top: 30px;
+}
+.help-content > .content {
+  color: white;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+.image-content{
+  width: 60%;
+  margin-top: 30px;
+}
+.img-footer{
+  width: 100px;
+  height: 80px;
+}
+.catch-poke{
+  width: 100%;
+}
+.btn-catch{
+  display: block;
+  margin:auto;
+  border: 1px solid #ccc;
+  padding : 5px 5px;
+}
+.wrap-btn-add{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+.text-duplicate{
+  text-align: center;
+  color: red;
+  font-weight: 550;
+}
+.result-failed{
+  text-align: center;
+  color: red;
+  font-weight: 550;
 }

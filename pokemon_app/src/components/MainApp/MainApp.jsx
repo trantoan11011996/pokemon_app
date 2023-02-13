@@ -7,17 +7,22 @@ import "..//Style/style.css";
 import { Container } from "react-bootstrap";
 import Header from "../Header.jsx/Header";
 import UserBag from "../UserBag/UserBag";
+import Footer from "../Footer/Footer";
+import "../../index.css";
 export default function MainApp() {
   return (
     <AuthContext.Provider value={null}>
       <PokemonProvider>
         <HashRouter>
-          <div className="main-app">
-            <Header />
-            <Routes>
-              <Route path="/" element={<HomePage />}></Route>
-              <Route path="/bag" element={<UserBag />}></Route>
-            </Routes>
+          <Header />
+          <div className="app-container">
+            <div className="main-app">
+              <Routes>
+                <Route path="/" element={<HomePage />}></Route>
+                <Route path="/bag" element={<UserBag />}></Route>
+              </Routes>
+            </div>
+            <Footer />
           </div>
         </HashRouter>
       </PokemonProvider>
